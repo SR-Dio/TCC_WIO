@@ -1,7 +1,7 @@
 # Wirelees_IO
 
 ## Equipe
-* Denilson Freitas Ramos
+* Denilson Freitas
 * Lucas Da Paz
 * Diogo Cintra
 * Gustavo Terto
