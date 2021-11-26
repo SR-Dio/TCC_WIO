@@ -8,15 +8,20 @@
 #ifndef WIFI_H
 #define	WIFI_H
 
+unsigned char d = 0;
+
 void wifi_init( long br );
 void wifi_send( const char * msg );
 unsigned char wifi_receive( unsigned char * rcv );
 void Wifi_mode(unsigned char d );
-//void Wifi_connect(unsigned char *SSID, unsigned char *PASS );
-void Wifi_connect(void);
+void Wifi_connect( const char * ssid, const char * pass );
 void Wifi_ip( void );
 void Wifi_autoconnect( void );
-void Wifi_state (void);
+void Wifi_scan (void);
+void Wifi_config_servidor( void );
+void Wifi_config_cliente ( void );
+void Wifi_cipsend( unsigned char *tam, unsigned char *msg );
+
 
 
 struct
@@ -25,11 +30,14 @@ struct
     void (*send)( const char * msg );
     unsigned char (*receive)( unsigned char * rcv );
     void (*mode)(unsigned char d );
-    void (*connect)(void);
+    void (*connect)(const char * ssid, const char * pass);
     void (*ip)( void );
     void (*autoconnect)( void );
-    void (*state) (void);
-}wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect,Wifi_state };
+    void (*scan) (void);
+    void (*config_servidor)( void );
+    void (*config_cliente)( void );
+    void (*cipsend)( unsigned char *tam, unsigned char *msg );
+}wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect, Wifi_scan, Wifi_config_servidor, Wifi_config_cliente, Wifi_cipsend};
 
 #endif	/* WIFI_H */
 

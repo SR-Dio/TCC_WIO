@@ -23,7 +23,6 @@
       <itemPath>main.c</itemPath>
       <itemPath>delay.c</itemPath>
       <itemPath>lcd.c</itemPath>
-      <itemPath>keyboard.c</itemPath>
       <itemPath>eusart.c</itemPath>
       <itemPath>wifi.c</itemPath>
       <itemPath>interrupt.c</itemPath>

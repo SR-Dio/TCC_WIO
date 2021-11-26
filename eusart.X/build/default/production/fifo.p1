@@ -341,3 +341,117 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;fifo.c: 44: }
 [e :UE 142 ]
 }
+"46
+[; ;fifo.c: 46: extern char indice = 0;
+[v _indice `uc ~T0 @X0 1 e ]
+[i _indice
+-> -> 0 `i `uc
+]
+"47
+[; ;fifo.c: 47: extern char vtr[33] = " ";
+[v _vtr `uc ~T0 @X0 -> 33 `i e ]
+[i _vtr
+:U ..
+-> 32 `c
+-> 0 `c
+..
+]
+"50
+[; ;fifo.c: 50: void fifo_filtro( void )
+[v _fifo_filtro `(v ~T0 @X0 1 ef ]
+"51
+[; ;fifo.c: 51: {
+{
+[e :U _fifo_filtro ]
+[f ]
+"52
+[; ;fifo.c: 52:         while( fifo_tam() )
+[e $U 144  ]
+[e :U 145 ]
+"53
+[; ;fifo.c: 53:         {
+{
+"54
+[; ;fifo.c: 54:             unsigned char d = fifo_retirar();
+[v _d `uc ~T0 @X0 1 a ]
+[e = _d ( _fifo_retirar ..  ]
+"55
+[; ;fifo.c: 55:             if( d >= 20 )
+[e $ ! >= -> _d `i -> 20 `i 147  ]
+"56
+[; ;fifo.c: 56:             {
+{
+"57
+[; ;fifo.c: 57:                 vtr[indice] = d;
+[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> _d `uc ]
+"58
+[; ;fifo.c: 58:                 indice = ++indice % 32;
+[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
+"59
+[; ;fifo.c: 59:             }
+}
+[e $U 148  ]
+"60
+[; ;fifo.c: 60:             else if( d == '\r' )
+[e :U 147 ]
+[e $ ! == -> _d `ui -> 13 `ui 149  ]
+"61
+[; ;fifo.c: 61:             {
+{
+"62
+[; ;fifo.c: 62:                 vtr[indice] = " ";
+[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 1C `uc ]
+"63
+[; ;fifo.c: 63:                 indice = ++indice % 32;
+[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
+"64
+[; ;fifo.c: 64:                 vtr[indice] = " ";
+[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 2C `uc ]
+"65
+[; ;fifo.c: 65:                 indice = ++indice % 32;
+[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
+"66
+[; ;fifo.c: 66:             }
+}
+[e $U 150  ]
+"67
+[; ;fifo.c: 67:             else if( d == '\n' )
+[e :U 149 ]
+[e $ ! == -> _d `ui -> 10 `ui 151  ]
+"68
+[; ;fifo.c: 68:             {
+{
+"69
+[; ;fifo.c: 69:                 vtr[indice] = " ";
+[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 3C `uc ]
+"70
+[; ;fifo.c: 70:                 indice = ++indice % 32;
+[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
+"71
+[; ;fifo.c: 71:                 vtr[indice] = " ";
+[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 4C `uc ]
+"72
+[; ;fifo.c: 72:                 indice = ++indice % 32;
+[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
+"73
+[; ;fifo.c: 73:             }
+}
+[e :U 151 ]
+[e :U 150 ]
+[e :U 148 ]
+"74
+[; ;fifo.c: 74:         }
+}
+[e :U 144 ]
+"52
+[; ;fifo.c: 52:         while( fifo_tam() )
+[e $ != -> ( _fifo_tam ..  `i -> 0 `i 145  ]
+[e :U 146 ]
+"75
+[; ;fifo.c: 75: }
+[e :UE 143 ]
+}
+[a 1C 32 0 ]
+[a 2C 32 0 ]
+[a 3C 32 0 ]
+[a 4C 32 0 ]

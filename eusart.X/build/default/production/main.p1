@@ -1,14 +1,14 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F1325 `(v ~T0 @X0 0 tf ]
-[v F1327 `(v ~T0 @X0 0 tf1`*Cuc ]
-[v F1330 `(v ~T0 @X0 0 tf3`uc`uc`*Cuc ]
-[v F1335 `(v ~T0 @X0 0 tf4`uc`uc`i`uc ]
-[v F1341 `(v ~T0 @X0 0 tf ]
-[v F1343 `(uc ~T0 @X0 0 tf ]
-[v F1345 `(uc ~T0 @X0 0 tf ]
-"9 ./ihm.h
-[; ;./ihm.h: 9: {
-[s S139 `*F1325 1 `*F1327 1 `*F1330 1 `*F1335 1 `*F1341 1 `*F1343 1 `*F1345 1 ]
+[v F1321 `(v ~T0 @X0 0 tf ]
+[v F1323 `(v ~T0 @X0 0 tf1`*Cuc ]
+[v F1326 `(v ~T0 @X0 0 tf3`uc`uc`*Cuc ]
+[v F1331 `(v ~T0 @X0 0 tf4`uc`uc`i`uc ]
+[v F1337 `(v ~T0 @X0 0 tf ]
+[v F1339 `(uc ~T0 @X0 0 tf ]
+[v F1341 `(uc ~T0 @X0 0 tf ]
+"8 ./ihm.h
+[; ;./ihm.h: 8: {
+[s S139 `*F1321 1 `*F1323 1 `*F1326 1 `*F1331 1 `*F1337 1 `*F1339 1 `*F1341 1 ]
 [n S139 . init print printpos printv clr B0 B1 ]
 "9 ./lcd.h
 [; ;./lcd.h: 9: void dispLCD_init( void );
@@ -31,94 +31,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;./lcd.h: 16: unsigned char dispLCD_B1( void );
 [v _dispLCD_B1 `(uc ~T0 @X0 0 ef ]
-[v F1364 `(uc ~T0 @X0 0 tf ]
-[v F1366 `(uc ~T0 @X0 0 tf ]
-[v F1368 `(uc ~T0 @X0 0 tf ]
-[v F1370 `(v ~T0 @X0 0 tf ]
-"20 ./ihm.h
-[; ;./ihm.h: 20: {
-[s S140 `*F1364 1 `*F1366 1 `*F1368 1 `*F1370 1 ]
-[n S140 . teclaAnterior teclaAtual scan init ]
-"4 ./keyboard.h
-[; ;./keyboard.h: 4: unsigned char previousKey( void );
-[v _previousKey `(uc ~T0 @X0 0 ef ]
-"5
-[; ;./keyboard.h: 5: unsigned char currentKey( void );
-[v _currentKey `(uc ~T0 @X0 0 ef ]
-"6
-[; ;./keyboard.h: 6: unsigned char keyboard_scan( void );
-[v _keyboard_scan `(uc ~T0 @X0 0 ef ]
-"7
-[; ;./keyboard.h: 7: void keyboard_init( void );
-[v _keyboard_init `(v ~T0 @X0 0 ef ]
-[v F1390 `(v ~T0 @X0 0 tf1`l ]
-[v F1393 `(v ~T0 @X0 0 tf1`*Cuc ]
-[v F1396 `(uc ~T0 @X0 0 tf1`*uc ]
-[v F1399 `(v ~T0 @X0 0 tf1`uc ]
+[v F1380 `(v ~T0 @X0 0 tf1`l ]
+[v F1383 `(v ~T0 @X0 0 tf1`*Cuc ]
+[v F1386 `(uc ~T0 @X0 0 tf1`*uc ]
+[v F1389 `(v ~T0 @X0 0 tf1`uc ]
+[v F1392 `(v ~T0 @X0 0 tf2`*Cuc`*Cuc ]
+[v F1396 `(v ~T0 @X0 0 tf ]
+[v F1398 `(v ~T0 @X0 0 tf ]
+[v F1400 `(v ~T0 @X0 0 tf ]
 [v F1402 `(v ~T0 @X0 0 tf ]
 [v F1404 `(v ~T0 @X0 0 tf ]
-[v F1406 `(v ~T0 @X0 0 tf ]
-[v F1408 `(v ~T0 @X0 0 tf ]
-"23 ./wifi.h
-[; ;./wifi.h: 23: {
-[s S141 `*F1390 1 `*F1393 1 `*F1396 1 `*F1399 1 `*F1402 1 `*F1404 1 `*F1406 1 `*F1408 1 ]
-[n S141 . init send receive mode connect ip autoconnect state ]
-"11
-[; ;./wifi.h: 11: void wifi_init( long br );
-[v _wifi_init `(v ~T0 @X0 0 ef1`l ]
-"12
-[; ;./wifi.h: 12: void wifi_send( const char * msg );
-[v _wifi_send `(v ~T0 @X0 0 ef1`*Cuc ]
+[v F1406 `(v ~T0 @X0 0 tf2`*uc`*uc ]
+"28 ./wifi.h
+[; ;./wifi.h: 28: {
+[s S140 `*F1380 1 `*F1383 1 `*F1386 1 `*F1389 1 `*F1392 1 `*F1396 1 `*F1398 1 `*F1400 1 `*F1402 1 `*F1404 1 `*F1406 1 ]
+[n S140 . init send receive mode connect ip autoconnect scan config_servidor config_cliente cipsend ]
 "13
-[; ;./wifi.h: 13: unsigned char wifi_receive( unsigned char * rcv );
-[v _wifi_receive `(uc ~T0 @X0 0 ef1`*uc ]
+[; ;./wifi.h: 13: void wifi_init( long br );
+[v _wifi_init `(v ~T0 @X0 0 ef1`l ]
 "14
-[; ;./wifi.h: 14: void Wifi_mode(unsigned char d );
-[v _Wifi_mode `(v ~T0 @X0 0 ef1`uc ]
+[; ;./wifi.h: 14: void wifi_send( const char * msg );
+[v _wifi_send `(v ~T0 @X0 0 ef1`*Cuc ]
+"15
+[; ;./wifi.h: 15: unsigned char wifi_receive( unsigned char * rcv );
+[v _wifi_receive `(uc ~T0 @X0 0 ef1`*uc ]
 "16
-[; ;./wifi.h: 16: void Wifi_connect(void);
-[v _Wifi_connect `(v ~T0 @X0 0 ef ]
+[; ;./wifi.h: 16: void Wifi_mode(unsigned char d );
+[v _Wifi_mode `(v ~T0 @X0 0 ef1`uc ]
 "17
-[; ;./wifi.h: 17: void Wifi_ip( void );
-[v _Wifi_ip `(v ~T0 @X0 0 ef ]
+[; ;./wifi.h: 17: void Wifi_connect( const char * ssid, const char * pass );
+[v _Wifi_connect `(v ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "18
-[; ;./wifi.h: 18: void Wifi_autoconnect( void );
-[v _Wifi_autoconnect `(v ~T0 @X0 0 ef ]
+[; ;./wifi.h: 18: void Wifi_ip( void );
+[v _Wifi_ip `(v ~T0 @X0 0 ef ]
 "19
-[; ;./wifi.h: 19: void Wifi_state (void);
-[v _Wifi_state `(v ~T0 @X0 0 ef ]
+[; ;./wifi.h: 19: void Wifi_autoconnect( void );
+[v _Wifi_autoconnect `(v ~T0 @X0 0 ef ]
+"20
+[; ;./wifi.h: 20: void Wifi_scan (void);
+[v _Wifi_scan `(v ~T0 @X0 0 ef ]
+"21
+[; ;./wifi.h: 21: void Wifi_config_servidor( void );
+[v _Wifi_config_servidor `(v ~T0 @X0 0 ef ]
+"22
+[; ;./wifi.h: 22: void Wifi_config_cliente ( void );
+[v _Wifi_config_cliente `(v ~T0 @X0 0 ef ]
+"23
+[; ;./wifi.h: 23: void Wifi_cipsend( unsigned char *tam, unsigned char *msg );
+[v _Wifi_cipsend `(v ~T0 @X0 0 ef2`*uc`*uc ]
 [p mainexit ]
-"1422 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1422:     struct {
-[s S53 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S53 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"1421
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1421: typedef union {
-[u S52 `S53 1 ]
-[n S52 . . ]
-"1433
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 1433: extern volatile TRISAbits_t TRISAbits __attribute__((address(0x085)));
-[v _TRISAbits `VS52 ~T0 @X0 0 e@133 ]
 "6 ./delay.h
 [; ;./delay.h: 6: void delay( unsigned int t );
 [v _delay `(v ~T0 @X0 0 ef1`ui ]
-"172 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 172:     struct {
-[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S6 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-"171
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 171: typedef union {
-[u S5 `S6 1 ]
-[n S5 . . ]
-"183
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 183: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
-[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
-"12 ./fifo.h
-[; ;./fifo.h: 12: unsigned char fifo_retirar( void );
-[v _fifo_retirar `(uc ~T0 @X0 0 ef ]
-"13
-[; ;./fifo.h: 13: unsigned char fifo_tam( void );
-[v _fifo_tam `(uc ~T0 @X0 0 ef ]
+"18 ./fifo.h
+[; ;./fifo.h: 18: void fifo_filtro( void );
+[v _fifo_filtro `(v ~T0 @X0 0 ef ]
 "5 ./config.h
 [p x FOSC = HS ]
 "6
@@ -377,8 +344,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"17 ./ihm.h
-[; ;./ihm.h: 17: } lcd = { dispLCD_init, dispLCDstr, dispLCD, dispLCD_num, dispLCD_clr, dispLCD_B0, dispLCD_B1 };
+"16 ./ihm.h
+[; ;./ihm.h: 16: } lcd = { dispLCD_init, dispLCDstr, dispLCD, dispLCD_num, dispLCD_clr, dispLCD_B0, dispLCD_B1 };
 [v _lcd `S139 ~T0 @X0 1 e ]
 [i _lcd
 :U ..
@@ -393,22 +360,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"26
-[; ;./ihm.h: 26: } keyboard = { previousKey , currentKey , keyboard_scan , keyboard_init };
-[v _keyboard `S140 ~T0 @X0 1 e ]
-[i _keyboard
-:U ..
-:U ..
-&U _previousKey
-&U _currentKey
-&U _keyboard_scan
-&U _keyboard_init
-..
-..
+"11 ./wifi.h
+[; ;./wifi.h: 11: unsigned char d = 0;
+[v _d `uc ~T0 @X0 1 e ]
+[i _d
+-> -> 0 `i `uc
 ]
-"32 ./wifi.h
-[; ;./wifi.h: 32: }wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect,Wifi_state };
-[v _wifi `S141 ~T0 @X0 1 e ]
+"40
+[; ;./wifi.h: 40: }wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect, Wifi_scan, Wifi_config_servidor, Wifi_config_cliente, Wifi_cipsend};
+[v _wifi `S140 ~T0 @X0 1 e ]
 [i _wifi
 :U ..
 :U ..
@@ -419,348 +379,146 @@ Version 4.0 HI-TECH Software Intermediate Code
 &U _Wifi_connect
 &U _Wifi_ip
 &U _Wifi_autoconnect
-&U _Wifi_state
+&U _Wifi_scan
+&U _Wifi_config_servidor
+&U _Wifi_config_cliente
+&U _Wifi_cipsend
 ..
 ..
 ]
-"16 main.c
-[; ;main.c: 16: void hexadecimal( unsigned char * origem, unsigned char * destino )
-[v _hexadecimal `(v ~T0 @X0 1 ef2`*uc`*uc ]
-"17
-[; ;main.c: 17: {
-{
-[e :U _hexadecimal ]
-"16
-[; ;main.c: 16: void hexadecimal( unsigned char * origem, unsigned char * destino )
-[v _origem `*uc ~T0 @X0 1 r1 ]
-[v _destino `*uc ~T0 @X0 1 r2 ]
-"17
-[; ;main.c: 17: {
-[f ]
-"18
-[; ;main.c: 18:     unsigned char aux;
-[v _aux `uc ~T0 @X0 1 a ]
-"19
-[; ;main.c: 19:     unsigned char meiobyte;
-[v _meiobyte `uc ~T0 @X0 1 a ]
-"21
-[; ;main.c: 21:     while( *origem )
-[e $U 143  ]
-[e :U 144 ]
-"22
-[; ;main.c: 22:     {
-{
-"23
-[; ;main.c: 23:         aux = *origem;
-[e = _aux *U _origem ]
-"25
-[; ;main.c: 25:         meiobyte = (aux >> 4);
-[e = _meiobyte -> >> -> _aux `i -> 4 `i `uc ]
-"27
-[; ;main.c: 27:         if( meiobyte < 10 )
-[e $ ! < -> _meiobyte `i -> 10 `i 146  ]
-"28
-[; ;main.c: 28:             *destino++ = meiobyte+'0';
-[e = *U ++ _destino * -> -> 1 `i `x -> -> # *U _destino `i `x -> + -> _meiobyte `ui -> 48 `ui `uc ]
-[e $U 147  ]
-"29
-[; ;main.c: 29:         else
-[e :U 146 ]
-"30
-[; ;main.c: 30:             *destino++ = meiobyte-10+'A';
-[e = *U ++ _destino * -> -> 1 `i `x -> -> # *U _destino `i `x -> + -> - -> _meiobyte `i -> 10 `i `ui -> 65 `ui `uc ]
-[e :U 147 ]
-"32
-[; ;main.c: 32:         meiobyte = (aux & 0x0F);
-[e = _meiobyte -> & -> _aux `i -> 15 `i `uc ]
-"34
-[; ;main.c: 34:         if( meiobyte < 10 )
-[e $ ! < -> _meiobyte `i -> 10 `i 148  ]
-"35
-[; ;main.c: 35:             *destino++ = meiobyte+'0';
-[e = *U ++ _destino * -> -> 1 `i `x -> -> # *U _destino `i `x -> + -> _meiobyte `ui -> 48 `ui `uc ]
-[e $U 149  ]
-"36
-[; ;main.c: 36:         else
-[e :U 148 ]
-"37
-[; ;main.c: 37:             *destino++ = meiobyte-10+'A';
-[e = *U ++ _destino * -> -> 1 `i `x -> -> # *U _destino `i `x -> + -> - -> _meiobyte `i -> 10 `i `ui -> 65 `ui `uc ]
-[e :U 149 ]
-"39
-[; ;main.c: 39:         origem++;
-[e ++ _origem * -> -> 1 `i `x -> -> # *U _origem `i `x ]
-"40
-[; ;main.c: 40:     }
-}
-[e :U 143 ]
-"21
-[; ;main.c: 21:     while( *origem )
-[e $ != -> *U _origem `i -> 0 `i 144  ]
-[e :U 145 ]
-"41
-[; ;main.c: 41:     *destino = 0;
-[e = *U _destino -> -> 0 `i `uc ]
-"42
-[; ;main.c: 42: }
-[e :UE 142 ]
-}
+"11 ./fifo.h
+[; ;./fifo.h: 11: extern char indice = 0;
+[v _indice `uc ~T0 @X0 1 e ]
+[i _indice
+-> -> 0 `i `uc
+]
+"12
+[; ;./fifo.h: 12: extern char vtr[33] = " ";
+[v _vtr `uc ~T0 @X0 -> 33 `i e ]
+[i _vtr
+:U ..
+-> 32 `c
+-> 0 `c
+..
+]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"44
-[; ;main.c: 44: void main(void)
+"34 main.c
+[; ;main.c: 34: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"45
-[; ;main.c: 45: {
+"35
+[; ;main.c: 35: {
 {
 [e :U _main ]
 [f ]
-"50
-[; ;main.c: 50:     const char string[] = "OK";
-[v F1433 `Cuc ~T0 @X0 -> 3 `i s string ]
-[i F1433
-:U ..
--> 79 `c
--> 75 `c
--> 0 `c
-..
-]
-[v F1434 `uc ~T0 @X0 -> 33 `i s ]
-[i F1434
-:U ..
-"51
-[; ;main.c: 51:     unsigned char vtr[33] = " ";
--> 32 `c
--> 0 `c
-..
-]
-[v _vtr `uc ~T0 @X0 -> 33 `i a ]
-[e = _vtr F1434 ]
-[v F1436 `uc ~T0 @X0 -> 40 `i s ]
-[i F1436
-:U ..
-"52
-[; ;main.c: 52:     unsigned char hex[40] = " ";
--> 32 `c
--> 0 `c
-..
-]
-[v _hex `uc ~T0 @X0 -> 40 `i a ]
-[e = _hex F1436 ]
-"53
-[; ;main.c: 53:     unsigned char indice = 0;
-[v _indice `uc ~T0 @X0 1 a ]
-[e = _indice -> -> 0 `i `uc ]
-"55
-[; ;main.c: 55:     TRISAbits.TRISA4 = 1;
-[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
-"57
-[; ;main.c: 57:     delay(1000);
-[e ( _delay (1 -> -> 1000 `i `ui ]
-"58
-[; ;main.c: 58:     lcd.init();
+"36
+[; ;main.c: 36:     lcd.init();
 [e ( *U . _lcd 0 ..  ]
-"59
-[; ;main.c: 59:     keyboard.init();
-[e ( *U . _keyboard 3 ..  ]
-"60
-[; ;main.c: 60:     wifi_init(115200);
+"37
+[; ;main.c: 37:     wifi_init(115200);
 [e ( _wifi_init (1 -> 115200 `l ]
-"61
-[; ;main.c: 61:     delay(1000);
-[e ( _delay (1 -> -> 1000 `i `ui ]
-"67
-[; ;main.c: 67:     while( 1 )
-[e :U 152 ]
-"68
-[; ;main.c: 68:     {
-{
-"69
-[; ;main.c: 69:         if( !PORTAbits.RA4 )
-[e $ ! ! != -> . . _PORTAbits 0 4 `i -> 0 `i 154  ]
-"70
-[; ;main.c: 70:         {
-{
-"71
-[; ;main.c: 71:             lcd.clr();
+"38
+[; ;main.c: 38:     delay(3000);
+[e ( _delay (1 -> -> 3000 `i `ui ]
+"40
+[; ;main.c: 40:     lcd.clr();
 [e ( *U . _lcd 4 ..  ]
-"72
-[; ;main.c: 72:             indice = 0;
+"41
+[; ;main.c: 41:     indice = 0;
 [e = _indice -> -> 0 `i `uc ]
-"73
-[; ;main.c: 73:             wifi.mode(1);
+"42
+[; ;main.c: 42:     wifi.mode(1);
 [e ( *U . _wifi 3 (1 -> -> 1 `i `uc ]
-"74
-[; ;main.c: 74:             while( !PORTAbits.RA4 )
-[e $U 155  ]
-[e :U 156 ]
-"75
-[; ;main.c: 75:                 ;
-[e :U 155 ]
-"74
-[; ;main.c: 74:             while( !PORTAbits.RA4 )
-[e $ ! != -> . . _PORTAbits 0 4 `i -> 0 `i 156  ]
-[e :U 157 ]
-"76
-[; ;main.c: 76:         }
-}
-[e :U 154 ]
-"78
-[; ;main.c: 78:         if( lcd.B0() )
-[e $ ! != -> ( *U . _lcd 5 ..  `i -> 0 `i 158  ]
-"79
-[; ;main.c: 79:         {
-{
-"80
-[; ;main.c: 80:             lcd.clr();
-[e ( *U . _lcd 4 ..  ]
-"81
-[; ;main.c: 81:             indice = 0;
-[e = _indice -> -> 0 `i `uc ]
-"82
-[; ;main.c: 82:             wifi.state();
-[e ( *U . _wifi 7 ..  ]
-"83
-[; ;main.c: 83:             while( lcd.B0() )
-[e $U 159  ]
-[e :U 160 ]
-"84
-[; ;main.c: 84:                 ;
-[e :U 159 ]
-"83
-[; ;main.c: 83:             while( lcd.B0() )
-[e $ != -> ( *U . _lcd 5 ..  `i -> 0 `i 160  ]
-[e :U 161 ]
-"85
-[; ;main.c: 85:         }
-}
-[e :U 158 ]
-"87
-[; ;main.c: 87:         if( lcd.B1() )
-[e $ ! != -> ( *U . _lcd 6 ..  `i -> 0 `i 162  ]
-"88
-[; ;main.c: 88:         {
-{
-"89
-[; ;main.c: 89:             lcd.clr();
-[e ( *U . _lcd 4 ..  ]
-"90
-[; ;main.c: 90:             indice = 0;
-[e = _indice -> -> 0 `i `uc ]
-"91
-[; ;main.c: 91:             wifi.connect();
-[e ( *U . _wifi 4 ..  ]
-"92
-[; ;main.c: 92:             while( lcd.B1() )
-[e $U 163  ]
-[e :U 164 ]
-"93
-[; ;main.c: 93:                 ;
-[e :U 163 ]
-"92
-[; ;main.c: 92:             while( lcd.B1() )
-[e $ != -> ( *U . _lcd 6 ..  `i -> 0 `i 164  ]
-[e :U 165 ]
-"94
-[; ;main.c: 94:         }
-}
-[e :U 162 ]
-"96
-[; ;main.c: 96:         while( fifo_tam() )
-[e $U 166  ]
-[e :U 167 ]
-"97
-[; ;main.c: 97:         {
-{
-"98
-[; ;main.c: 98:             unsigned char d = fifo_retirar();
-[v _d `uc ~T0 @X0 1 a ]
-[e = _d ( _fifo_retirar ..  ]
-"99
-[; ;main.c: 99:             if( d >= 20 )
-[e $ ! >= -> _d `i -> 20 `i 169  ]
-"100
-[; ;main.c: 100:             {
-{
-"101
-[; ;main.c: 101:                 vtr[indice] = d;
-[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux _d ]
-"102
-[; ;main.c: 102:                 indice = ++indice % 32;
-[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
-"103
-[; ;main.c: 103:             }
-}
-[e $U 170  ]
-"104
-[; ;main.c: 104:             else if( d == '\r' )
-[e :U 169 ]
-[e $ ! == -> _d `ui -> 13 `ui 171  ]
-"105
-[; ;main.c: 105:             {
-{
-"106
-[; ;main.c: 106:                 vtr[indice] = "null";
-[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 1C `uc ]
-"107
-[; ;main.c: 107:                 indice = ++indice % 32;
-[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
-"108
-[; ;main.c: 108:                 vtr[indice] = "null";
-[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 2C `uc ]
-"109
-[; ;main.c: 109:                 indice = ++indice % 32;
-[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
-"110
-[; ;main.c: 110:             }
-}
-[e $U 172  ]
-"111
-[; ;main.c: 111:             else if( d == '\n' )
-[e :U 171 ]
-[e $ ! == -> _d `ui -> 10 `ui 173  ]
-"112
-[; ;main.c: 112:             {
-{
-"113
-[; ;main.c: 113:                 vtr[indice] = "null";
-[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 3C `uc ]
-"114
-[; ;main.c: 114:                 indice = ++indice % 32;
-[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
-"115
-[; ;main.c: 115:                 vtr[indice] = "null";
-[e = *U + &U _vtr * -> _indice `ux -> -> # *U &U _vtr `ui `ux -> :s 4C `uc ]
-"116
-[; ;main.c: 116:                 indice = ++indice % 32;
-[e = _indice -> % -> =+ _indice -> -> 1 `i `uc `i -> 32 `i `uc ]
-"117
-[; ;main.c: 117:             }
-}
-[e :U 173 ]
-[e :U 172 ]
-[e :U 170 ]
-"118
-[; ;main.c: 118:         }
-}
-[e :U 166 ]
-"96
-[; ;main.c: 96:         while( fifo_tam() )
-[e $ != -> ( _fifo_tam ..  `i -> 0 `i 167  ]
-[e :U 168 ]
-"119
-[; ;main.c: 119:         lcd.printpos(0,0,vtr);
+"44
+[; ;main.c: 44:     fifo_filtro();
+[e ( _fifo_filtro ..  ]
+"45
+[; ;main.c: 45:     lcd.printpos(0,0,vtr);
 [e ( *U . _lcd 2 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _vtr `*Cuc ]
-"126
-[; ;main.c: 126:     }
+"46
+[; ;main.c: 46:     delay(3000);
+[e ( _delay (1 -> -> 3000 `i `ui ]
+"48
+[; ;main.c: 48:     wifi.connect("TCC","87654321");
+[e ( *U . _wifi 4 (2 , :s 1C :s 2C ]
+"50
+[; ;main.c: 50:     lcd.clr();
+[e ( *U . _lcd 4 ..  ]
+"51
+[; ;main.c: 51:     indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"52
+[; ;main.c: 52:     fifo_filtro();
+[e ( _fifo_filtro ..  ]
+"53
+[; ;main.c: 53:     lcd.printpos(0,0,vtr);
+[e ( *U . _lcd 2 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _vtr `*Cuc ]
+"54
+[; ;main.c: 54:     delay(3000);
+[e ( _delay (1 -> -> 3000 `i `ui ]
+"56
+[; ;main.c: 56:     wifi.send("AT+CIPSTART=\"TCP\",\"192.168.4.1\",333\r\n");
+[e ( *U . _wifi 1 (1 :s 3C ]
+"57
+[; ;main.c: 57:     delay(2000);
+[e ( _delay (1 -> -> 2000 `i `ui ]
+"59
+[; ;main.c: 59:     lcd.clr();
+[e ( *U . _lcd 4 ..  ]
+"60
+[; ;main.c: 60:     indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"61
+[; ;main.c: 61:     fifo_filtro();
+[e ( _fifo_filtro ..  ]
+"62
+[; ;main.c: 62:     lcd.printpos(0,0,vtr);
+[e ( *U . _lcd 2 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _vtr `*Cuc ]
+"63
+[; ;main.c: 63:     delay(3000);
+[e ( _delay (1 -> -> 3000 `i `ui ]
+"65
+[; ;main.c: 65:     wifi.send("AT+CIPSEND=4\r\n");
+[e ( *U . _wifi 1 (1 :s 4C ]
+"66
+[; ;main.c: 66:     delay(500);
+[e ( _delay (1 -> -> 500 `i `ui ]
+"67
+[; ;main.c: 67:     wifi.send("LUCA\r\n");
+[e ( *U . _wifi 1 (1 :s 5C ]
+"68
+[; ;main.c: 68:     delay(2000);
+[e ( _delay (1 -> -> 2000 `i `ui ]
+"70
+[; ;main.c: 70:     lcd.clr();
+[e ( *U . _lcd 4 ..  ]
+"71
+[; ;main.c: 71:     indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"72
+[; ;main.c: 72:     fifo_filtro();
+[e ( _fifo_filtro ..  ]
+"73
+[; ;main.c: 73:     lcd.printpos(0,0,vtr);
+[e ( *U . _lcd 2 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> &U _vtr `*Cuc ]
+"74
+[; ;main.c: 74:     delay(3000);
+[e ( _delay (1 -> -> 3000 `i `ui ]
+"76
+[; ;main.c: 76:     lcd.clr();
+[e ( *U . _lcd 4 ..  ]
+"77
+[; ;main.c: 77:     indice = 0;
+[e = _indice -> -> 0 `i `uc ]
+"78
+[; ;main.c: 78:     wifi.send("AT+CLOSE\r\n");
+[e ( *U . _wifi 1 (1 :s 6C ]
+"88
+[; ;main.c: 88: }
+[e :UE 141 ]
 }
-[e :U 151 ]
-[e $U 152  ]
-[e :U 153 ]
-"127
-[; ;main.c: 127: }
-[e :UE 150 ]
-}
-[a 1C 110 117 108 108 0 ]
-[a 2C 110 117 108 108 0 ]
-[a 3C 110 117 108 108 0 ]
-[a 4C 110 117 108 108 0 ]
+[a 1C 84 67 67 0 ]
+[a 2C 56 55 54 53 52 51 50 49 0 ]
+[a 6C 65 84 43 67 76 79 83 69 13 10 0 ]
+[a 5C 76 85 67 65 13 10 0 ]
+[a 4C 65 84 43 67 73 80 83 69 78 68 61 52 13 10 0 ]
+[a 3C 65 84 43 67 73 80 83 84 65 82 84 61 34 84 67 80 34 44 34 49 57 50 46 49 54 56 46 52 46 49 34 44 51 51 51 13 10 0 ]

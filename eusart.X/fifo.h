@@ -8,10 +8,14 @@
 #ifndef FIFO_H
 #define	FIFO_H
 
+extern char indice = 0;
+extern char vtr[33] = " ";
+
 void fifo_inserir( unsigned char d );
 unsigned char fifo_retirar( void );
 unsigned char fifo_tam( void );
 void fifo_init( void );
+void fifo_filtro( void );
 
 #endif
 

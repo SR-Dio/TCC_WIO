@@ -2503,10 +2503,14 @@ extern __bank0 __bit __timeout;
 
 # 1 "./fifo.h" 1
 # 11 "./fifo.h"
+extern char indice = 0;
+extern char vtr[33] = " ";
+
 void fifo_inserir( unsigned char d );
 unsigned char fifo_retirar( void );
 unsigned char fifo_tam( void );
 void fifo_init( void );
+void fifo_filtro( void );
 # 10 "interrupt.c" 2
 
 

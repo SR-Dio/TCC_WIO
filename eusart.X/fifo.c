@@ -42,3 +42,34 @@ void fifo_init( void )
     fifo_head = 0;
     fifo_tail = 0;
 }
+
+extern char indice = 0;
+extern char vtr[33] = " ";
+//unsigned char hex[40] = " ";
+
+void fifo_filtro( void )
+{
+        while( fifo_tam() )
+        {
+            unsigned char d = fifo_retirar();
+            if( d >= 20 )
+            {
+                vtr[indice] = d;
+                indice = ++indice % 32;
+            }
+            else if( d == '\r' )
+            {
+                vtr[indice] = " ";
+                indice = ++indice % 32;
+                vtr[indice] = " ";
+                indice = ++indice % 32;
+            }
+            else if( d == '\n' )
+            {
+                vtr[indice] = " ";
+                indice = ++indice % 32;
+                vtr[indice] = " ";
+                indice = ++indice % 32;
+            }
+        }
+}

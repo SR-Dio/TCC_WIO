@@ -3,7 +3,6 @@
 
 #include "lcd.h"
 #include "eusart.h"
-#include "keyboard.h"
 
 struct
 {
@@ -15,15 +14,5 @@ struct
     unsigned char (* B0)( void );
     unsigned char (* B1)( void );
 } lcd = { dispLCD_init, dispLCDstr, dispLCD, dispLCD_num, dispLCD_clr, dispLCD_B0, dispLCD_B1 };
-
-struct 
-{
-    unsigned char (* teclaAnterior) ( void );  // retorna Tecla Anterior.
-    unsigned char (* teclaAtual) ( void );   // retorna Tecla Atual.
-    unsigned char (* scan)( void ); // Varredura do teclado.
-    void (* init )( void );     
-    
-} keyboard = { previousKey , currentKey , keyboard_scan , keyboard_init };
-
 
 #endif

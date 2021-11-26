@@ -7,13 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-
-
-
-
-
-
-
+# 26 "main.c"
 # 1 "./config.h" 1
 
 
@@ -33,7 +27,7 @@
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 8 "main.c" 2
+# 26 "main.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 3
@@ -2519,7 +2513,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.00\\pic\\include\\xc.h" 2 3
-# 9 "main.c" 2
+# 27 "main.c" 2
 
 # 1 "./delay.h" 1
 
@@ -2528,7 +2522,7 @@ extern __bank0 __bit __timeout;
 
 
 void delay( unsigned int t );
-# 10 "main.c" 2
+# 28 "main.c" 2
 
 # 1 "./ihm.h" 1
 
@@ -2581,15 +2575,6 @@ struct eusartT
 
 extern struct eusartT eusart;
 # 6 "./ihm.h" 2
-# 1 "./keyboard.h" 1
-
-
-
-unsigned char previousKey( void );
-unsigned char currentKey( void );
-unsigned char keyboard_scan( void );
-void keyboard_init( void );
-# 7 "./ihm.h" 2
 
 struct
 {
@@ -2601,29 +2586,25 @@ struct
     unsigned char (* B0)( void );
     unsigned char (* B1)( void );
 } lcd = { dispLCD_init, dispLCDstr, dispLCD, dispLCD_num, dispLCD_clr, dispLCD_B0, dispLCD_B1 };
-
-struct
-{
-    unsigned char (* teclaAnterior) ( void );
-    unsigned char (* teclaAtual) ( void );
-    unsigned char (* scan)( void );
-    void (* init )( void );
-
-} keyboard = { previousKey , currentKey , keyboard_scan , keyboard_init };
-# 11 "main.c" 2
+# 29 "main.c" 2
 
 
 # 1 "./wifi.h" 1
 # 11 "./wifi.h"
+unsigned char d = 0;
+
 void wifi_init( long br );
 void wifi_send( const char * msg );
 unsigned char wifi_receive( unsigned char * rcv );
 void Wifi_mode(unsigned char d );
-
-void Wifi_connect(void);
+void Wifi_connect( const char * ssid, const char * pass );
 void Wifi_ip( void );
 void Wifi_autoconnect( void );
-void Wifi_state (void);
+void Wifi_scan (void);
+void Wifi_config_servidor( void );
+void Wifi_config_cliente ( void );
+void Wifi_cipsend( unsigned char *tam, unsigned char *msg );
+
 
 
 struct
@@ -2632,131 +2613,73 @@ struct
     void (*send)( const char * msg );
     unsigned char (*receive)( unsigned char * rcv );
     void (*mode)(unsigned char d );
-    void (*connect)(void);
+    void (*connect)(const char * ssid, const char * pass);
     void (*ip)( void );
     void (*autoconnect)( void );
-    void (*state) (void);
-}wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect,Wifi_state };
-# 13 "main.c" 2
+    void (*scan) (void);
+    void (*config_servidor)( void );
+    void (*config_cliente)( void );
+    void (*cipsend)( unsigned char *tam, unsigned char *msg );
+}wifi = {wifi_init, wifi_send, wifi_receive, Wifi_mode, Wifi_connect, Wifi_ip, Wifi_autoconnect, Wifi_scan, Wifi_config_servidor, Wifi_config_cliente, Wifi_cipsend};
+# 31 "main.c" 2
 
 # 1 "./fifo.h" 1
 # 11 "./fifo.h"
+extern char indice = 0;
+extern char vtr[33] = " ";
+
 void fifo_inserir( unsigned char d );
 unsigned char fifo_retirar( void );
 unsigned char fifo_tam( void );
 void fifo_init( void );
-# 14 "main.c" 2
+void fifo_filtro( void );
+# 32 "main.c" 2
 
-
-void hexadecimal( unsigned char * origem, unsigned char * destino )
-{
-    unsigned char aux;
-    unsigned char meiobyte;
-
-    while( *origem )
-    {
-        aux = *origem;
-
-        meiobyte = (aux >> 4);
-
-        if( meiobyte < 10 )
-            *destino++ = meiobyte+'0';
-        else
-            *destino++ = meiobyte-10+'A';
-
-        meiobyte = (aux & 0x0F);
-
-        if( meiobyte < 10 )
-            *destino++ = meiobyte+'0';
-        else
-            *destino++ = meiobyte-10+'A';
-
-        origem++;
-    }
-    *destino = 0;
-}
 
 void main(void)
 {
-
-
-
-
-    const char string[] = "OK";
-    unsigned char vtr[33] = " ";
-    unsigned char hex[40] = " ";
-    unsigned char indice = 0;
-
-    TRISAbits.TRISA4 = 1;
-
-    delay(1000);
     lcd.init();
-    keyboard.init();
     wifi_init(115200);
-    delay(1000);
+    delay(3000);
 
+    lcd.clr();
+    indice = 0;
+    wifi.mode(1);
 
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
+    wifi.connect("TCC","87654321");
 
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
-    while( 1 )
-    {
-        if( !PORTAbits.RA4 )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.mode(1);
-            while( !PORTAbits.RA4 )
-                ;
-        }
+    wifi.send("AT+CIPSTART=\"TCP\",\"192.168.4.1\",333\r\n");
+    delay(2000);
 
-        if( lcd.B0() )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.state();
-            while( lcd.B0() )
-                ;
-        }
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
-        if( lcd.B1() )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.connect();
-            while( lcd.B1() )
-                ;
-        }
+    wifi.send("AT+CIPSEND=4\r\n");
+    delay(500);
+    wifi.send("LUCA\r\n");
+    delay(2000);
 
-        while( fifo_tam() )
-        {
-            unsigned char d = fifo_retirar();
-            if( d >= 20 )
-            {
-                vtr[indice] = d;
-                indice = ++indice % 32;
-            }
-            else if( d == '\r' )
-            {
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-            }
-            else if( d == '\n' )
-            {
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-            }
-        }
-        lcd.printpos(0,0,vtr);
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
-
-
-
-
-
-    }
+    lcd.clr();
+    indice = 0;
+    wifi.send("AT+CLOSE\r\n");
+# 88 "main.c"
 }

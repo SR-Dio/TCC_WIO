@@ -5,6 +5,24 @@
  * Created on 27 de Setembro de 2021, 13:10
  */
 
+//    wifi_send("AT+CWSAP=\"WIO\",\"23456789\",1,2,4,0\r\n");
+//    delay(2000);
+//
+//    lcd.clr();
+//    indice = 0;
+//    fifo_filtro();
+//    lcd.printpos(0,0,vtr);
+//    delay(3000);
+//
+//    wifi_send("AT+CIPMUX=1\r\n");
+//    delay(2000);
+//
+//    lcd.clr();
+//    indice = 0;
+//    fifo_filtro();
+//    lcd.printpos(0,0,vtr);
+//    delay(3000);
+
 #include "config.h"
 #include <xc.h>
 #include "delay.h"
@@ -13,115 +31,230 @@
 #include "wifi.h"
 #include "fifo.h"
 
-void hexadecimal( unsigned char * origem, unsigned char * destino )
-{
-    unsigned char aux;
-    unsigned char meiobyte;
-
-    while( *origem )
-    {
-        aux = *origem;
-
-        meiobyte = (aux >> 4);
-
-        if( meiobyte < 10 )
-            *destino++ = meiobyte+'0';
-        else
-            *destino++ = meiobyte-10+'A';
-
-        meiobyte = (aux & 0x0F);
-
-        if( meiobyte < 10 )
-            *destino++ = meiobyte+'0';
-        else
-            *destino++ = meiobyte-10+'A';
-    
-        origem++;
-    }
-    *destino = 0;
-}
-
 void main(void)
 {
-//    unsigned recebidos = 0;
-//    unsigned char i = 0;
-//    unsigned char tecla;
-
-    const char string[]   = "OK";
-    unsigned char vtr[33] = " ";
-    unsigned char hex[40] = " ";
-    unsigned char indice = 0;
-    
-    TRISAbits.TRISA4 = 1;
-
-    delay(1000);
     lcd.init();
-    keyboard.init();
     wifi_init(115200);
-    delay(1000);
+    delay(3000);
 
-    
-//    lcd.print("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-//    delay(1000);
-    
-    while( 1 )
-    {
-        if( !PORTAbits.RA4 )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.mode(1);
-            while( !PORTAbits.RA4 )
-                ;
-        }
+    lcd.clr();
+    indice = 0;
+    wifi.mode(1);
 
-        if( lcd.B0() )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.state();
-            while( lcd.B0() )
-                ;
-        }
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
-        if( lcd.B1() )
-        {
-            lcd.clr();
-            indice = 0;
-            wifi.connect();
-            while( lcd.B1() )
-                ;
-        }
+    wifi.connect("TCC","87654321");
 
-        while( fifo_tam() )
-        {
-            unsigned char d = fifo_retirar();
-            if( d >= 20 )
-            {
-                vtr[indice] = d;
-                indice = ++indice % 32;
-            }
-            else if( d == '\r' )
-            {
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-            }
-            else if( d == '\n' )
-            {
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-                vtr[indice] = "null";
-                indice = ++indice % 32;
-            }
-        }
-        lcd.printpos(0,0,vtr);
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
 
-//        if(eusart.search_string(string,vtr))
-//             lcd.printpos(1,0,"OK");
-//        else
-//             lcd.printpos(1,0,"FAIL");
-//
-    }
+    wifi.send("AT+CIPSTART=\"TCP\",\"192.168.4.1\",333\r\n"); 
+    delay(2000);
+
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
+
+    wifi.send("AT+CIPSEND=4\r\n"); 
+    delay(500);
+    wifi.send("LUCA\r\n"); 
+    delay(2000);
+
+    lcd.clr();
+    indice = 0;
+    fifo_filtro();
+    lcd.printpos(0,0,vtr);
+    delay(3000);
+
+    lcd.clr();
+    indice = 0;
+    wifi.send("AT+CLOSE\r\n"); 
+
+//        while(1)
+//        {
+//            lcd.clr();
+//            indice = 0;
+//            fifo_filtro();
+//            lcd.printpos(0,0,vtr);
+//            delay(5000);
+//        }
 }
+//    while( 1 )
+//    {
+//        switch(estado)
+//        {
+//            case 0: 
+//                    indice = 0;
+//                    lcd.clr();
+//                    wifi_send("AT+CIPCLOSE\r\n"); 
+//                    delay(3000);
+//
+//                    estado=15;
+//                    break;
+//            case 1: 
+//                    wifi.mode(1);
+//                    delay(2000);
+//                    estado = 2;
+//                    break;
+//            case 2:  
+//                    indice = 0;
+//                    lcd.clr();
+//                    fifo_filtro();
+//                    lcd.printpos(0,0,vtr);
+//                    delay(3000);
+//                    
+////                    wifi.config_servidor();
+////                    delay(1000);
+//                    
+//                    estado = 8;
+//                    break;
+//            case 8:  
+//                    wifi.connect("WIO","98765432");
+//                    delay(2000);
+//
+//                    lcd.clr();
+//                    indice = 0;
+//                    fifo_filtro();
+//                    lcd.printpos(0,0,vtr);
+//                    delay(3000);
+//
+//                    estado = 15;
+//                    break;
+//            case 10:  
+//                    wifi.send("AT+PING=\"192.168.4.1\"\r\n"); 
+//                    delay(1000);
+//
+//                    lcd.clr();
+//                    indice = 0;
+//                    fifo_filtro();
+//                    lcd.printpos(0,0,vtr);
+//                    delay(3000);
+//                    
+//                    estado = 15;
+//                    break;
+//            case 15:  
+//
+//                    wifi.send("AT+CIPSTART=\"TCP\",\"192.168.4.1\",333\r\n");
+//                    delay(2000);
+//                    
+//                    lcd.clr();
+//                    indice = 0;
+//                    fifo_filtro();
+//                    lcd.printpos(0,0,vtr);
+//                    delay(3000);
+//
+//                    estado = 18;
+//                    break;
+//            case 18:  
+//                    wifi.send("AT+CIPSEND=4\r\n");
+//                    wifi.send("LUCA\r\n");
+//                    delay(1500);
+//                    
+//                    estado = 20;
+//                    break;
+//            case 20:  
+//                    lcd.clr();
+//                    indice = 0;
+//                    fifo_filtro();
+//                    lcd.printpos(0,0,vtr);
+//                    delay(5000);
+//
+//                    estado = 0;
+//                    break;
+//            case 21:  
+//                    break;
+//            case 22:  
+//                    break;
+//        }
+//    }
+    
+    
+    
+    
+//        if( !PORTAbits.RA4 )
+//        {
+//            lcd.clr();
+//            indice = 0;
+//            wifi.send("AT+RESTORE\r\n");
+////            wifi_send("AT+CIPSTART=\"TCP\",\"192.168.4.1\",\"333\"\r\n"); 
+////            fifo_filtro();
+////            lcd.printpos(0,0,vtr);
+////            delay(3000);
+////            indice = 0;
+////            lcd.clr();
+////
+////            wifi_send("AT+CIPSEND=8\r\n");
+////            fifo_filtro();
+////            lcd.printpos(0,0,vtr);
+////            delay(3000);
+////            indice = 0;
+////            lcd.clr();
+////
+////            wifi_send("ABCDEFGH"); 
+////            fifo_filtro();
+////            lcd.printpos(0,0,vtr);
+////            delay(3000);
+////            indice = 0;
+////            lcd.clr();
+////
+////            wifi_send("AT+CIPCLOSE\r\n"); 
+////            while( !PORTAbits.RA4 )
+////                ;
+//        }
+//
+//        if( lcd.B0() )
+//        {
+//            lcd.clr();
+//            indice = 0;
+//            wifi.mode(2);
+//            fifo_filtro();
+//            lcd.printpos(0,0,vtr);
+//            delay(3000);
+//
+//            lcd.clr();
+//            indice = 0;
+//            wifi.config_servidor();
+//            fifo_filtro();
+//            lcd.printpos(0,0,vtr);
+//            delay(3000);
+//
+//            while( lcd.B0() )
+//                ;
+//        }
+//
+//        if( lcd.B1() ) 
+//        {
+//            lcd.clr();
+//            indice = 0;
+//            wifi.mode(1);
+//            fifo_filtro();
+//            lcd.printpos(0,0,vtr);
+//            delay(3000);
+//
+//            lcd.clr();
+//            indice = 0;
+//            wifi.connect("WIRELESS","********");
+//            fifo_filtro();
+//            lcd.printpos(0,0,vtr);
+//            delay(3000);
+//
+//            lcd.clr();
+//            indice = 0;
+//            wifi.cipsend(5,"lucas");
+//
+//            while( lcd.B1() )
+//
+//                ;
+//        }
+//
+//        fifo_filtro();
+//        lcd.printpos(0,0,vtr);
+////        lcd.printpos(1,0,d);
+//    }
